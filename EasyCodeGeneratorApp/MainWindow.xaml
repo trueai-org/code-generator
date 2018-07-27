@@ -1,0 +1,95 @@
+﻿<Window x:Class="EasyCodeGeneratorApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyCodeGeneratorApp"
+        mc:Ignorable="d"
+        Title="Easy Code Generator - https://github.com/trueai-org/code-generator" Height="600" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
+
+    <Grid>
+        <ToolBar Height="30"  VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <Button Name="btnLoadTemplate" Content="load template" Height="25" VerticalAlignment="Top" Width="90" Click="btnLoadTemplate_Click"/>
+            <Button Name="btnSaveTemplate" Content="save template" VerticalAlignment="Stretch" Width="90" Click="btnSaveTemplate_Click"/>
+        </ToolBar>
+        <StatusBar Height="30" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+            <Label Name="lableStatus" Content="status"/>
+        </StatusBar>
+        <Grid Margin="0,30,0,30" Grid.ColumnSpan="2">
+            <TabControl  Margin="210,57,5,5">
+                <TabItem Header="model">
+                    <Grid Background="#FFE5E5E5">
+                        <RichTextBox Name="txtModel" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
+                            <FlowDocument LineHeight="1">
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="repository">
+                    <Grid Background="#FFE5E5E5">
+                        <RichTextBox Name="txtRepository" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
+                            <FlowDocument LineHeight="1">
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="service">
+                    <Grid Background="#FFE5E5E5">
+                        <RichTextBox Name="txtService" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
+                            <FlowDocument LineHeight="1">
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="html">
+                    <Grid Background="#FFE5E5E5">
+                        <RichTextBox Name="txtHtml" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
+                            <FlowDocument LineHeight="1">
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="setting">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+            <TreeView x:Name="tableTreeView"  HorizontalAlignment="Left"  Margin="5" Width="200">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type local:DbTable}" ItemsSource="{Binding TableSchemas}">
+                        <TextBlock Text="{Binding TableName}" ToolTip="{Binding TableDescription}"/>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ColumnAndType}" ToolTip="{Binding Description}"/>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+            <ComboBox Name="cbDbType" HorizontalAlignment="Left" Margin="210,5,0,0" VerticalAlignment="Top" Width="100" Height="23">
+                <ComboBoxItem Content="mysql" HorizontalAlignment="Left" Width="98"/>
+                <ComboBoxItem Content="sql server" HorizontalAlignment="Left" Width="98"/>
+                <ComboBoxItem Content="oracle" HorizontalAlignment="Left" Width="98"/>
+            </ComboBox>
+            <!--<ComboBox IsEditable="True" IsTextSearchEnabled="True" Name="txtConnString1" ItemsSource="{Binding GeneratorConfig}" DisplayMemberPath="ConnectionString" SelectedValuePath="ConnectionString" SelectedValue="{Binding ConnectionString}" HorizontalAlignment="Left" Margin="710,29,0,0" VerticalAlignment="Top" Width="72" Height="23">
+            </ComboBox>-->
+            <TextBox Name="txtConnString" ToolTip="database connection string" Height="23" Margin="315,5,5,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <Button Name="btnJoin" Content="connect" ToolTip="connection database" HorizontalAlignment="Left" Margin="210,33,0,0" VerticalAlignment="Top" Width="100" Click="btnJoin_Click" />
+            <Button Name="btnGenCode" Content="generate code" ToolTip="select the table and generate the code" HorizontalAlignment="Left" Margin="315,33,0,0" VerticalAlignment="Top" Width="100" Click="btnGenCode_Click"/>
+            <Button Name="btnSingleGen" Content="single generation save" ToolTip="select the table and save the build file"  HorizontalAlignment="Left" Margin="420,33,0,0" VerticalAlignment="Top" Width="140" Click="btnSingleGen_Click"/>
+            <Button Name="btnAllGen" Content="all generation save" ToolTip="save build all file" HorizontalAlignment="Left" Margin="565,33,0,0" VerticalAlignment="Top" Width="140" Click="btnAllGen_Click"/>
+        </Grid>
+    </Grid>
+</Window>
+   
