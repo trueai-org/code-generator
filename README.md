@@ -1,3 +1,3 @@
 # code generator
 ## simple code generator, support mysql oracle sql server.
-[https://i.loli.net/2018/11/21/5bf50ffee9a9c.png](https://i.loli.net/2018/11/21/5bf50ffee9a9c.png)
+![](https://gz-1253581958.cos.ap-guangzhou.myqcloud.com/github/code-generator/2018-08-27_14-18-40.gif)
